@@ -10,7 +10,7 @@ export default function ErrorPage({ reset }: { error: Error & { digest?: string 
       <button
         type="button"
         onClick={reset}
-        className="mt-8 inline-flex min-h-11 items-center rounded-sm bg-primary px-6 py-3 font-medium text-white hover:bg-primary-deep"
+        className="btn mt-8 inline-flex min-h-11 items-center rounded-sm bg-primary px-6 py-3 font-medium text-white hover:bg-primary-deep"
       >
         Обновить страницу
       </button>

@@ -4,14 +4,13 @@ import type { AnalyticsEvent } from "@/lib/analytics";
 
 export type ButtonVariant = "primary" | "secondary" | "inverse" | "inverseOutline";
 
-const base =
-  "inline-flex min-h-11 items-center justify-center rounded-sm px-6 py-3 text-base font-medium leading-tight transition-colors duration-200";
+const base = "btn inline-flex min-h-11 items-center justify-center rounded-sm px-6 py-3 text-base font-medium leading-tight";
 
 const variants: Record<ButtonVariant, string> = {
   primary: "bg-primary text-white hover:bg-primary-deep",
   secondary: "border border-primary text-primary hover:bg-primary hover:text-white",
-  inverse: "bg-white text-primary hover:bg-wash",
-  inverseOutline: "border border-white/60 text-white hover:bg-white/10",
+  inverse: "bg-white text-primary hover:bg-wash [--glow:255_255_255] [--wave:70_150_255]",
+  inverseOutline: "border border-white/60 text-white hover:bg-white/10 [--glow:255_255_255]",
 };
 
 export const buttonClass = (variant: ButtonVariant, className = "") =>

@@ -99,7 +99,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={sending}
-        className="inline-flex min-h-11 items-center justify-center rounded-sm bg-primary px-8 py-3 font-medium text-white transition-colors hover:bg-primary-deep disabled:opacity-60"
+        className="btn inline-flex min-h-11 items-center justify-center rounded-sm bg-primary px-8 py-3 font-medium text-white hover:bg-primary-deep disabled:opacity-60"
       >
         {sending ? "Отправляю..." : "Отправить"}
       </button>

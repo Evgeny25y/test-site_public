@@ -65,6 +65,84 @@ p {
   outline-color: #fff;
 }
 
+/* Кнопки: свечение при наведении и волна от точки нажатия (запускает ButtonEffects). */
+.btn {
+  --glow: 70 150 255;
+  --wave: var(--glow);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    background-color 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.3s ease;
+}
+
+.btn:hover:not(:disabled) {
+  box-shadow:
+    0 0 0 1px rgb(var(--glow) / 0.8),
+    0 0 16px rgb(var(--glow) / 0.85),
+    0 0 36px rgb(var(--glow) / 0.65),
+    0 10px 36px rgb(var(--glow) / 0.5);
+}
+
+/* Бегущая волна: светлая полоса пробегает по кнопке, пока на неё наведён курсор. */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 30%, rgb(var(--wave) / 0.55) 50%, transparent 70%);
+  transform: translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btn:hover:not(:disabled)::before {
+  opacity: 1;
+  animation: btn-wave 1.3s ease-in-out infinite;
+}
+
+@keyframes btn-wave {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  left: var(--rx, 50%);
+  top: var(--ry, 50%);
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btn.is-rippling::after {
+  animation: btn-ripple 0.7s ease-out;
+}
+
+@keyframes btn-ripple {
+  from {
+    opacity: 0.35;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(var(--rs, 12));
+  }
+}
+
 @keyframes rise {
   from {
     opacity: 0;
@@ -84,6 +162,10 @@ p {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .btn:hover:not(:disabled)::before {
+    animation: none;
+    opacity: 0;
   }
   *,
   *::before,

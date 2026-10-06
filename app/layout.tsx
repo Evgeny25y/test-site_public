@@ -7,6 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { profile } from "@/content/profile";
+import { ButtonEffects } from "@/components/ui/ButtonEffects";
 import { siteUrl } from "@/lib/env";
 import { homeDescription, homeTitle } from "@/lib/seo";
 
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <FloatingContact />
         <StructuredData />
         <Analytics />
+        <ButtonEffects />
       </body>
     </html>
   );
