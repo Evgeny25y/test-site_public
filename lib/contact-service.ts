@@ -4,6 +4,8 @@ export interface ContactPayload {
   message: string;
   email?: string;
   consent: boolean;
+  /** Поле-ловушка для ботов: у человека всегда пустое. */
+  website?: string;
 }
 
 export type ContactResult =
@@ -23,7 +25,7 @@ export async function submitContact(payload: ContactPayload): Promise<ContactRes
 
     if (response.ok) return { status: "sent" };
     if (response.status === 503) return { status: "not_configured" };
-    if (response.status === 400) {
+    if (response.status === 400 || response.status === 429) {
       const body = (await response.json().catch(() => null)) as { message?: string } | null;
       return { status: "invalid", message: body?.message ?? "Проверьте заполненные поля." };
     }

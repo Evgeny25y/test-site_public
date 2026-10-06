@@ -27,6 +27,7 @@ export function ContactForm() {
       message: String(data.get("message") ?? ""),
       email: String(data.get("email") ?? "") || undefined,
       consent: data.get("consent") === "on",
+      website: String(data.get("website") ?? ""),
     });
 
     if (result.status === "sent") {
@@ -67,6 +68,11 @@ export function ContactForm() {
           Email <span className="text-muted">(необязательно)</span>
         </label>
         <input id={`${id}-email`} name="email" type="email" autoComplete="email" maxLength={160} className={field} />
+      </div>
+
+      <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+        <label htmlFor={`${id}-website`}>Сайт</label>
+        <input id={`${id}-website`} name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
       <div className="flex items-start gap-3">
